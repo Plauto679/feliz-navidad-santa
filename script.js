@@ -58,3 +58,22 @@ window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(()=>{ re
 // Allow user to toggle mute by clicking the video (useful to hear Santa)
 const video = document.getElementById('video');
 video.addEventListener('click', ()=>{ video.muted = !video.muted; });
+
+// Attempt programmatic play; if blocked, show play button for user
+const playButton = document.getElementById('playButton');
+function showPlay(){ playButton.style.display = 'flex'; }
+function hidePlay(){ playButton.style.display = 'none'; }
+
+video.play().then(()=>{
+  hidePlay();
+}).catch(()=>{
+  showPlay();
+});
+
+playButton.addEventListener('click', ()=>{
+  video.play().then(()=> hidePlay()).catch(()=>{});
+});
+
+// Hide play button when playback starts
+video.addEventListener('play', hidePlay);
+video.addEventListener('pause', showPlay);
