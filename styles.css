@@ -1,0 +1,27 @@
+/* Fullscreen video and transparent snow canvas overlay */
+html,body{
+  height:100%;
+  margin:0;
+  background:#000;
+}
+#video{
+  position:fixed;
+  top:50%;
+  left:50%;
+  width:auto;
+  height:80vh;
+  transform:translate(-50%,-50%);
+  object-fit:contain;
+  z-index:1;
+  background:#000;
+}
+#snow{
+  position:fixed;
+  top:0;left:0;
+  width:100vw;height:100vh;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* Ensure page shows only the video and snow */
+*{box-sizing:border-box}
